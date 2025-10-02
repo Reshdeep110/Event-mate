@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route,Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Events from './pages/Events';
@@ -24,6 +24,9 @@ function App() {
               <Route path="/event/:id" element={<EventDetails />} />
               <Route path="/my-tickets" element={<MyTickets />} />
               <Route path="/profile" element={<Profile />} />
+
+                <Route path="*" element={<Navigate to="/" replace />} />
+      
             </Routes>
           </ErrorBoundary>
         </main>

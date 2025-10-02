@@ -1,9 +1,17 @@
+const getFutureDate = (daysAhead, hour = 9, minute = 0) => {
+  const date = new Date();
+  date.setDate(date.getDate() + daysAhead);
+  date.setHours(hour, minute, 0, 0);
+  return date.toISOString();
+};
+
+
 export const mockEvents = [
   // ------------------- Chennai Events -------------------
   {
     id: 1,
     title: "Chennai Tech Summit 2025",
-    date: "2025-09-25",
+    date: getFutureDate(10, 9, 0),
     time: "9:00 AM",
     endTime: "6:00 PM",
     location: "Chennai Trade Centre, Nandanam",
@@ -13,14 +21,14 @@ export const mockEvents = [
     image: "https://picsum.photos/600/400?tech",
     price: 600,
     category: "Technology",
-    organizer: "Tamil Nadu IT Association", // String only
+    organizer: "Tamil Nadu IT Association",
     capacity: 1200,
     booked: 450
   },
   {
     id: 2,
     title: "Marina Beach Marathon",
-    date: "2025-11-15",
+     date: getFutureDate(15, 5, 30),
     time: "5:30 AM",
     endTime: "10:00 AM",
     location: "Marina Beach, Chennai",
@@ -29,14 +37,14 @@ export const mockEvents = [
     image: "https://picsum.photos/600/400?marathon",
     price: 0,
     category: "Sports",
-    organizer: "Chennai Runners Club", // String only
+    organizer: "Chennai Runners Club",
     capacity: 5000,
     booked: 2500
   },
   {
     id: 3,
     title: "Classical Music Festival",
-    date: "2025-12-20",
+    date: getFutureDate(20, 18, 30),
     time: "6:30 PM",
     endTime: "10:00 PM",
     location: "Music Academy, Chennai",
@@ -45,7 +53,7 @@ export const mockEvents = [
     image: "https://picsum.photos/600/400?music",
     price: 800,
     category: "Music",
-    organizer: "Chennai Cultural Trust", // String only
+    organizer: "Chennai Cultural Trust",
     capacity: 500,
     booked: 300
   },
@@ -54,7 +62,7 @@ export const mockEvents = [
   {
     id: 4,
     title: "Web3 & Blockchain Expo",
-    date: "2025-10-05",
+    date: getFutureDate(22, 9, 0),
     time: "9:00 AM",
     endTime: "6:00 PM",
     location: "Bangalore International Exhibition Centre",
@@ -63,14 +71,14 @@ export const mockEvents = [
     image: "https://picsum.photos/600/400?blockchain",
     price: 500,
     category: "Technology",
-    organizer: "Blockchain Association", // String only
+    organizer: "Blockchain Association",
     capacity: 800,
     booked: 200
   },
   {
     id: 5,
     title: "Bangalore Startup Fest",
-    date: "2025-09-30",
+   date: getFutureDate(25, 10, 0),
     time: "10:00 AM",
     endTime: "6:00 PM",
     location: "Infosys Campus, Bengaluru",
@@ -79,7 +87,7 @@ export const mockEvents = [
     image: "https://picsum.photos/600/400?startup",
     price: 250,
     category: "Business",
-    organizer: "NASSCOM", // String only
+    organizer: "NASSCOM",
     capacity: 1200,
     booked: 700
   },
@@ -88,7 +96,7 @@ export const mockEvents = [
   {
     id: 6,
     title: "Hyderabad Tech Conference",
-    date: "2025-10-12",
+     date: getFutureDate(28, 14, 0),
     time: "10:00 AM",
     endTime: "5:00 PM",
     location: "HITEC City, Hyderabad",
@@ -97,7 +105,7 @@ export const mockEvents = [
     image: "https://picsum.photos/600/400?conference",
     price: 400,
     category: "Technology",
-    organizer: "Hyderabad IT Association", // String only
+    organizer: "Hyderabad IT Association",
     capacity: 600,
     booked: 250
   },
@@ -106,7 +114,7 @@ export const mockEvents = [
   {
     id: 7,
     title: "Startup India Innovation",
-    date: "2025-08-15",
+  date: getFutureDate(30, 11, 0),
     time: "9:30 AM",
     endTime: "6:00 PM",
     location: "Mumbai Convention Centre",
@@ -115,7 +123,7 @@ export const mockEvents = [
     image: "https://picsum.photos/600/400?innovation",
     price: 300,
     category: "Business",
-    organizer: "Startup India", // String only
+    organizer: "Startup India",
     capacity: 500,
     booked: 150
   },
@@ -124,7 +132,7 @@ export const mockEvents = [
   {
     id: 8,
     title: "AI Summit 2025",
-    date: "2025-09-20",
+   date: getFutureDate(33, 17, 0),
     time: "10:00 AM",
     endTime: "5:00 PM",
     location: "Pragati Maidan, New Delhi",
@@ -133,16 +141,15 @@ export const mockEvents = [
     image: "https://picsum.photos/600/400?ai",
     price: 0,
     category: "Technology",
-    organizer: "Tech World India", // String only
+    organizer: "Tech World India",
     capacity: 1000,
     booked: 350
   },
 
-  // ------------------- More Events -------------------
   {
     id: 9,
     title: "Chennai Food Carnival",
-    date: "2025-10-28",
+    date: getFutureDate(35, 9, 0),
     time: "11:00 AM",
     endTime: "9:00 PM",
     location: "Island Grounds, Chennai",
@@ -158,7 +165,7 @@ export const mockEvents = [
   {
     id: 10,
     title: "Delhi Literature Festival",
-    date: "2025-10-10",
+   date: getFutureDate(38, 12, 0),
     time: "9:00 AM",
     endTime: "8:00 PM",
     location: "India Habitat Centre, New Delhi",
@@ -175,7 +182,7 @@ export const mockEvents = [
    {
     id: 11,
     title: "Namma Bengaluru Marathon",
-    date: "2025-10-18",
+     date: getFutureDate(40, 10, 0),
     time: "6:00 AM",
     endTime: "12:00 PM",
     location: "Cubbon Park, Bengaluru",
@@ -191,7 +198,7 @@ export const mockEvents = [
   {
     id: 12,
     title: "Bengaluru Music Fiesta",
-    date: "2025-12-12",
+      date: getFutureDate(43, 9, 0),
     time: "7:00 PM",
     endTime: "11:00 PM",
     location: "Chowdiah Memorial Hall, Bengaluru",
@@ -207,7 +214,7 @@ export const mockEvents = [
   {
     id: 13,
     title: "Bangalore Food Street Festival",
-    date: "2025-11-22",
+   date: getFutureDate(45, 6, 0),
     time: "12:00 PM",
     endTime: "10:00 PM",
     location: "VV Puram, Bengaluru",
@@ -223,7 +230,7 @@ export const mockEvents = [
   {
     id: 14,
     title: "Bangalore Literature Conclave",
-    date: "2025-10-08",
+  date: getFutureDate(48, 18, 0),
     time: "9:00 AM",
     endTime: "6:00 PM",
     location: "Bangalore Palace Grounds",
@@ -239,7 +246,7 @@ export const mockEvents = [
   {
     id: 15,
     title: "Bangalore Auto Show",
-    date: "2025-11-15",
+   date: getFutureDate(50, 10, 0),
     time: "10:00 AM",
     endTime: "7:00 PM",
     location: "Whitefield Convention Centre",
@@ -255,7 +262,7 @@ export const mockEvents = [
   {
     id: 16,
     title: "Bangalore Film Festival",
-    date: "2025-12-20",
+        date: getFutureDate(52, 14, 0),
     time: "6:00 PM",
     endTime: "11:00 PM",
     location: "PVR Orion Mall, Bengaluru",
@@ -273,7 +280,7 @@ export const mockEvents = [
   {
     id: 17,
     title: "Hyderabad Tech Conference",
-    date: "2025-10-12",
+       date: getFutureDate(55, 9, 0),
     time: "10:00 AM",
     endTime: "5:00 PM",
     location: "HITEC City, Hyderabad",
@@ -289,7 +296,7 @@ export const mockEvents = [
   {
     id: 18,
     title: "Hyderabad Food Carnival",
-    date: "2025-10-25",
+   date: getFutureDate(58, 11, 0),
     time: "11:00 AM",
     endTime: "10:00 PM",
     location: "Necklace Road, Hyderabad",
@@ -305,7 +312,7 @@ export const mockEvents = [
   {
     id: 19,
     title: "Hyderabad Literature Festival",
-    date: "2025-11-05",
+  date: getFutureDate(60, 19, 0),
     time: "9:00 AM",
     endTime: "6:00 PM",
     location: "Public Gardens, Hyderabad",
@@ -321,7 +328,7 @@ export const mockEvents = [
   {
     id: 20,
     title: "Hyderabad International Film Festival",
-    date: "2025-12-10",
+    date: getFutureDate(63, 15, 0),
     time: "6:00 PM",
     endTime: "11:00 PM",
     location: "Prasad's IMAX, Hyderabad",
@@ -337,7 +344,7 @@ export const mockEvents = [
   {
     id: 21,
     title: "Charminar Marathon",
-    date: "2025-12-01",
+     date: getFutureDate(65, 18, 0),
     time: "6:00 AM",
     endTime: "12:00 PM",
     location: "Charminar, Hyderabad",
@@ -353,7 +360,7 @@ export const mockEvents = [
   {
     id: 22,
     title: "Hyderabad Auto Expo",
-    date: "2025-11-25",
+     date: getFutureDate(68, 7, 0),
     time: "10:00 AM",
     endTime: "7:00 PM",
     location: "Hitex Exhibition Centre",
@@ -369,7 +376,7 @@ export const mockEvents = [
   {
     id: 23,
     title: "Hyderabad Startup Meet",
-    date: "2025-09-28",
+    date: getFutureDate(70, 17, 0),
     time: "10:00 AM",
     endTime: "6:00 PM",
     location: "T-Hub, Hyderabad",
@@ -385,7 +392,7 @@ export const mockEvents = [
   {
     id: 24,
     title: "Hyderabad Music Fest",
-    date: "2025-11-18",
+   date: getFutureDate(73, 10, 0),
     time: "7:00 PM",
     endTime: "11:00 PM",
     location: "Lal Bahadur Stadium, Hyderabad",
@@ -403,7 +410,7 @@ export const mockEvents = [
   {
     id: 25,
     title: "Startup India Innovation",
-    date: "2025-08-15",
+    date: getFutureDate(75, 16, 0),
     time: "9:30 AM",
     endTime: "6:00 PM",
     location: "Mumbai Convention Centre",
@@ -419,7 +426,7 @@ export const mockEvents = [
   {
     id: 26,
     title: "Mumbai Film Festival",
-    date: "2025-11-01",
+     date: getFutureDate(78, 14, 0),
     time: "5:00 PM",
     endTime: "11:00 PM",
     location: "PVR Cinemas, Mumbai",
@@ -435,7 +442,7 @@ export const mockEvents = [
   {
     id: 27,
     title: "Mumbai Marathon",
-    date: "2025-01-20",
+      date: getFutureDate(80, 9, 0),
     time: "6:00 AM",
     endTime: "12:00 PM",
     location: "Marine Drive, Mumbai",
@@ -451,7 +458,7 @@ export const mockEvents = [
   {
     id: 28,
     title: "Mumbai Music Carnival",
-    date: "2025-12-22",
+       date: getFutureDate(83, 7, 0),
     time: "6:00 PM",
     endTime: "11:00 PM",
     location: "NSCI Dome, Mumbai",
@@ -467,7 +474,7 @@ export const mockEvents = [
   {
     id: 29,
     title: "Mumbai Auto Show",
-    date: "2025-10-15",
+    date:  getFutureDate(85, 11, 0),
     time: "10:00 AM",
     endTime: "6:00 PM",
     location: "Bombay Exhibition Centre",
@@ -483,7 +490,8 @@ export const mockEvents = [
   {
     id: 30,
     title: "Mumbai Literature Carnival",
-    date: "2025-10-19",
+date: getFutureDate(88, 9, 0),
+
     time: "9:00 AM",
     endTime: "8:00 PM",
     location: "Nehru Centre, Mumbai",
@@ -498,8 +506,9 @@ export const mockEvents = [
   },
   {
     id: 31,
+      date: getFutureDate(90, 18, 0),
     title: "Mumbai Food Carnival",
-    date: "2025-12-02",
+    date: "2025-12-02T12:00:00",
     time: "12:00 PM",
     endTime: "9:00 PM",
     location: "Jio World Drive, Mumbai",
@@ -511,12 +520,7 @@ export const mockEvents = [
     organizer: "Mumbai Foodies",
     capacity: 3000,
     booked: 1900
-  },
-
-
-
-
-
+  }
 ];
 
 export const userProfile = {
@@ -525,6 +529,41 @@ export const userProfile = {
   email: "reshma@example.com",
   phone: "+91-9876543212",
   role: "Participant",
-  joinedDate: "2024-01-15",
+  joinedDate: new Date().toISOString().split('T')[0],
   location: "Chennai"
+};
+
+// Utility function to format dates
+export const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
+
+// Utility function to format time
+export const formatTime = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true
+  });
+};
+
+// Utility function to get relative time
+export const getRelativeTime = (dateString) => {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffTime = Math.abs(date - now);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  
+  if (diffDays === 0) return 'Today';
+  if (diffDays === 1) return 'Tomorrow';
+  if (diffDays < 7) return `In ${diffDays} days`;
+  if (diffDays < 30) return `In ${Math.ceil(diffDays / 7)} weeks`;
+  return `In ${Math.ceil(diffDays / 30)} months`;
 };

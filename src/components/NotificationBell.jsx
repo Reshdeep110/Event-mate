@@ -1,7 +1,5 @@
-// components/NotificationBell.jsx
 import React, { useState, useEffect } from 'react';
 import { notificationService } from '../services/NotificationService';
-
 
 const NotificationBell = () => {
   const [notifications, setNotifications] = useState([]);
@@ -47,10 +45,7 @@ const NotificationBell = () => {
 
   const markAllAsRead = async () => {
     try {
-      const unreadNotifications = notifications.filter(n => !n.read);
-      for (const notification of unreadNotifications) {
-        await notificationService.markAsRead(notification.id);
-      }
+      await notificationService.markAllAsRead();
       setNotifications(prev => prev.map(notif => ({ ...notif, read: true })));
       setUnreadCount(0);
     } catch (error) {
@@ -58,49 +53,214 @@ const NotificationBell = () => {
     }
   };
 
+  const getNotificationIcon = (type) => {
+    switch (type) {
+      case 'success': return '✅';
+      case 'warning': return '⚠️';
+      case 'error': return '❌';
+      case 'info': return 'ℹ️';
+      case 'reminder': return '⏰';
+      case 'update': return '🔄';
+      default: return '📢';
+    }
+  };
+
   return (
     <div className="notification-bell">
-      <button className="bell-icon" onClick={() => setIsOpen(!isOpen)}>
+      <button 
+        className="bell-icon" 
+        onClick={() => setIsOpen(!isOpen)}
+        style={{
+          background: 'none',
+          border: 'none',
+          fontSize: '1.5rem',
+          cursor: 'pointer',
+          position: 'relative',
+          padding: '0.5rem'
+        }}
+      >
         🔔
-        {unreadCount > 0 && <span className="badge">{unreadCount}</span>}
+        {unreadCount > 0 && (
+          <span 
+            className="badge"
+            style={{
+              position: 'absolute',
+              top: '0',
+              right: '0',
+              background: '#ff4757',
+              color: 'white',
+              borderRadius: '50%',
+              width: '18px',
+              height: '18px',
+              fontSize: '0.7rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            {unreadCount}
+          </span>
+        )}
       </button>
       
       {isOpen && (
-        <div className="notification-dropdown">
-          <div className="dropdown-header">
-            <h3>Notifications</h3>
-            <div>
+        <div 
+          className="notification-dropdown"
+          style={{
+            position: 'absolute',
+            top: '100%',
+            right: '0',
+            background: 'white',
+            border: '1px solid #ddd',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+            width: '350px',
+            maxHeight: '400px',
+            zIndex: 1000
+          }}
+        >
+          <div 
+            className="dropdown-header"
+            style={{
+              padding: '1rem',
+              borderBottom: '1px solid #eee',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}
+          >
+            <h3 style={{ margin: 0, fontSize: '1.1rem' }}>Notifications</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               {unreadCount > 0 && (
-                <button className="mark-all-read" onClick={markAllAsRead}>
+                <button 
+                  className="mark-all-read"
+                  onClick={markAllAsRead}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#007bff',
+                    cursor: 'pointer',
+                    fontSize: '0.8rem'
+                  }}
+                >
                   Mark all read
                 </button>
               )}
-              <button onClick={() => setIsOpen(false)}>×</button>
+              <button 
+                onClick={() => setIsOpen(false)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '1.2rem',
+                  cursor: 'pointer',
+                  padding: '0'
+                }}
+              >
+                ×
+              </button>
             </div>
           </div>
           
-          <div className="notification-list">
+          <div 
+            className="notification-list"
+            style={{
+              maxHeight: '300px',
+              overflowY: 'auto'
+            }}
+          >
             {error ? (
-              <div className="error-state">
+              <div 
+                className="error-state"
+                style={{
+                  padding: '2rem',
+                  textAlign: 'center',
+                  color: '#666'
+                }}
+              >
                 <p>{error}</p>
-                <button onClick={loadNotifications}>Retry</button>
+                <button 
+                  onClick={loadNotifications}
+                  style={{
+                    background: '#007bff',
+                    color: 'white',
+                    border: 'none',
+                    padding: '0.5rem 1rem',
+                    borderRadius: '4px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Retry
+                </button>
               </div>
             ) : loading ? (
-              <div className="loading">Loading notifications...</div>
+              <div 
+                className="loading"
+                style={{
+                  padding: '2rem',
+                  textAlign: 'center',
+                  color: '#666'
+                }}
+              >
+                Loading notifications...
+              </div>
             ) : notifications.length === 0 ? (
-              <div className="empty-state">No notifications</div>
+              <div 
+                className="empty-state"
+                style={{
+                  padding: '2rem',
+                  textAlign: 'center',
+                  color: '#666'
+                }}
+              >
+                No notifications
+              </div>
             ) : (
               notifications.map(notification => (
                 <div 
                   key={notification.id} 
                   className={`notification-item ${notification.read ? 'read' : 'unread'}`}
                   onClick={() => !notification.read && markAsRead(notification.id)}
+                  style={{
+                    padding: '1rem',
+                    borderBottom: '1px solid #f0f0f0',
+                    cursor: notification.read ? 'default' : 'pointer',
+                    background: notification.read ? 'white' : '#f8f9fa',
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '0.75rem'
+                  }}
                 >
-                  <div className="notification-content">
-                    <p>{notification.message}</p>
-                    <span className="notification-time">{notification.time}</span>
+                  <span style={{ fontSize: '1.2rem' }}>
+                    {getNotificationIcon(notification.type)}
+                  </span>
+                  <div 
+                    className="notification-content"
+                    style={{ flex: 1 }}
+                  >
+                    <p style={{ margin: '0 0 0.25rem 0', fontWeight: notification.read ? 'normal' : '600' }}>
+                      {notification.title}
+                    </p>
+                    <p style={{ margin: '0 0 0.25rem 0', color: '#666', fontSize: '0.9rem' }}>
+                      {notification.message}
+                    </p>
+                    <span 
+                      className="notification-time"
+                      style={{ color: '#999', fontSize: '0.8rem' }}
+                    >
+                      {notification.time}
+                    </span>
                   </div>
-                  {!notification.read && <div className="unread-dot"></div>}
+                  {!notification.read && (
+                    <div 
+                      className="unread-dot"
+                      style={{
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '50%',
+                        background: '#007bff'
+                      }}
+                    ></div>
+                  )}
                 </div>
               ))
             )}

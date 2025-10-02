@@ -1,79 +1,70 @@
-// services/NotificationService.js
-const API_BASE_URL = 'http://localhost:3001/api';
-
-// Mock data for development
-const mockNotifications = [
-  {
-    id: 1,
-    message: 'Your event "Tech Summit" has been approved!',
-    time: '2 hours ago',
-    read: false,
-    type: 'event_approval'
-  },
-  {
-    id: 2,
-    message: 'New message from John Doe about your event',
-    time: '5 hours ago',
-    read: true,
-    type: 'message'
-  },
-  {
-    id: 3,
-    message: 'Reminder: Tech Summit starts in 3 days',
-    time: '1 day ago',
-    read: false,
-    type: 'reminder'
-  },
-  {
-    id: 4,
-    message: 'Your payment for EventHub Pro was processed',
-    time: '2 days ago',
-    read: false,
-    type: 'payment'
-  }
-];
-
-export const notificationService = {
-  getNotifications: async () => {
-    try {
-      // Try to fetch from real API first
-      const response = await fetch(`${API_BASE_URL}/notifications`);
-      if (!response.ok) {
-        throw new Error('API not available');
+class NotificationService {
+  constructor() {
+    this.mockNotifications = [
+      {
+        id: '1',
+        title: 'Welcome to Eventbrite!',
+        message: 'Start exploring events near you.',
+        type: 'info',
+        read: false,
+        time: '2 hours ago',
+        createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString()
+      },
+      {
+        id: '2',
+        title: 'New Events in Your Area',
+        message: 'Check out the latest events in New Delhi.',
+        type: 'update',
+        read: false,
+        time: '1 day ago',
+        createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+      },
+      {
+        id: '3',
+        title: 'Ticket Confirmed',
+        message: 'Your ticket for AI Summit 2025 has been confirmed.',
+        type: 'success',
+        read: true,
+        time: '2 days ago',
+        createdAt: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString()
+      },
+      {
+        id: '4',
+        title: 'Event Reminder',
+        message: 'Web3 & Blockchain Expo is coming up in 2 weeks.',
+        type: 'reminder',
+        read: false,
+        time: '3 days ago',
+        createdAt: new Date(Date.now() - 72 * 60 * 60 * 1000).toISOString()
       }
-      return await response.json();
-    } catch (error) {
-      console.warn('API not available, using mock data:', error.message);
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 500));
-      return mockNotifications;
-    }
-  },
-
-  markAsRead: async (notificationId) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/notifications/${notificationId}/read`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      return await response.json();
-    } catch (error) {
-      console.warn('API not available, simulating mark as read');
-      await new Promise(resolve => setTimeout(resolve, 200));
-      return { success: true, message: 'Mock: Notification marked as read' };
-    }
-  },
-
-  getUnreadCount: async () => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/notifications/unread/count`);
-      const data = await response.json();
-      return data.count || 0;
-    } catch (error) {
-      console.warn('API not available, using mock unread count');
-      return mockNotifications.filter(notification => !notification.read).length;
-    }
+    ];
   }
-};
+
+  async getNotifications() {
+    return this.mockNotifications;
+  }
+
+  async markAsRead(notificationId) {
+    const notification = this.mockNotifications.find(n => n.id === notificationId);
+    if (notification) notification.read = true;
+    return { success: true, notificationId };
+  }
+
+  async markAllAsRead() {
+    this.mockNotifications.forEach(n => n.read = true);
+    return { success: true };
+  }
+
+  async createNotification(notification) {
+    const newNotification = {
+      ...notification,
+      id: Date.now().toString(),
+      createdAt: new Date().toISOString(),
+      read: false
+    };
+    this.mockNotifications.unshift(newNotification);
+    return newNotification;
+  }
+}
+
+export const notificationService = new NotificationService();
