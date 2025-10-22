@@ -60,100 +60,7 @@ body {
 }
 
 /* Notification Bell */
-.notification-bell {
-  position: relative;
-}
 
-.notification-icon {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  position: relative;
-  padding: 8px;
-}
-
-.notification-badge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: #e91e63;
-  color: white;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.notification-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  width: 320px;
-  z-index: 1000;
-}
-
-.notification-header {
-  padding: 15px;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.notification-list {
-  max-height: 400px;
-  overflow-y: auto;
-}
-
-.notification-item {
-  padding: 15px;
-  border-bottom: 1px solid #f0f0f0;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.notification-item:hover {
-  background: #f8f9fa;
-}
-
-.notification-item.unread {
-  background: #f0f7ff;
-}
-
-.notification-item.empty {
-  text-align: center;
-  color: #666;
-}
-
-.notification-title {
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-.notification-message {
-  color: #666;
-  font-size: 14px;
-}
-
-.notification-time {
-  color: #999;
-  font-size: 12px;
-  margin-top: 5px;
-}
-
-.notification-footer {
-  padding: 15px;
-  text-align: center;
-  border-top: 1px solid #eee;
-}
 
 /* Main Content */
 .main-content {
@@ -2892,17 +2799,3 @@ body {
   transform: translateY(-2px);
 }
 
-/* Navbar Enhancement */
-.navbar {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-.nav-logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}

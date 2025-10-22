@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { notificationService } from '../services/NotificationService';
+import './NotificationBell.css';
 
 const NotificationBell = () => {
   const [notifications, setNotifications] = useState([]);

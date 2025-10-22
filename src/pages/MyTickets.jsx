@@ -47,7 +47,7 @@ const MyTickets = () => {
           <p>Book your first event to see tickets here</p>
           <button 
             className="btn btn-primary"
-            onClick={() => window.location.href = '/events'}
+            onClick={() => window.location.href = './Events'}
           >
             Browse Events
           </button>

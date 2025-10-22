@@ -1,0 +1,198 @@
+/* ===================== MOBILE POSITIONING FIX ===================== */
+
+/* Mobile Bottom Sheet (max-width: 600px) */
+@media (max-width: 600px) {
+  .notification-bell {
+    position: relative;
+  }
+
+  .bell-icon {
+    font-size: 1.4rem;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.5rem;
+  }
+
+  /* FIX: Center the dropdown on mobile */
+  .notification-dropdown {
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90vw !important;
+    max-width: 400px !important;
+    height: auto !important;
+    max-height: 70vh !important;
+    border-radius: 16px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+    z-index: 2000 !important;
+    animation: modalFadeIn 0.3s ease-out !important;
+    margin: 0 !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  .dropdown-header {
+    padding: 1.2rem 1.5rem;
+    background: #f8f9fa;
+    border-radius: 16px 16px 0 0;
+    position: sticky;
+    top: 0;
+  }
+
+  .dropdown-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .notification-item {
+    padding: 1rem 1.2rem;
+    min-height: 60px;
+  }
+
+  .icon {
+    font-size: 1.2rem;
+  }
+
+  .title {
+    font-size: 0.95rem;
+  }
+
+  .message {
+    font-size: 0.88rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .badge {
+    width: 16px;
+    height: 16px;
+    font-size: 0.6rem;
+  }
+}
+
+/* Alternative: Bottom Sheet Style (Uncomment if you prefer bottom sheet) */
+/*
+@media (max-width: 600px) {
+  .notification-dropdown {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 70vh !important;
+    border-radius: 20px 20px 0 0 !important;
+    transform: none !important;
+    animation: slideUp 0.3s ease-out !important;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+*/
+
+/* Extra Small Devices (max-width: 400px) */
+@media (max-width: 400px) {
+  .notification-dropdown {
+    width: 95vw !important;
+    max-width: 95vw !important;
+    max-height: 80vh !important;
+  }
+
+  .dropdown-header {
+    padding: 1rem 1.2rem;
+  }
+
+  .dropdown-header h3 {
+    font-size: 1rem;
+  }
+
+  .notification-item {
+    padding: 0.9rem 1rem;
+  }
+
+  .title {
+    font-size: 0.92rem;
+  }
+
+  .message {
+    font-size: 0.85rem;
+  }
+}
+
+/* Landscape Mobile Optimization */
+@media (max-width: 600px) and (orientation: landscape) {
+  .notification-dropdown {
+    max-height: 60vh !important;
+    width: 85vw !important;
+  }
+  
+  .notification-item {
+    padding: 0.8rem 1rem;
+  }
+  
+  .message {
+    -webkit-line-clamp: 1;
+  }
+}
+
+/* Tablet Adjustments (601px to 768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+  .notification-dropdown {
+    width: 320px;
+    right: -10px;
+  }
+
+  .bell-icon {
+    font-size: 1.5rem;
+  }
+}
+
+/* Add backdrop overlay for mobile */
+@media (max-width: 600px) {
+  .notification-dropdown::before {
+    content: '';
+    position: fixed;
+    top: -100vh;
+    left: -100vw;
+    right: -100vw;
+    bottom: -100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+}
+
+/* Ensure dropdown stays within viewport on all devices */
+.notification-dropdown {
+  /* Reset any problematic positioning */
+  right: 0;
+  left: auto;
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .bell-icon:hover {
+    transform: none;
+  }
+  
+  .notification-item {
+    min-height: 60px;
+  }
+}
